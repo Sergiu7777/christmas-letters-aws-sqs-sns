@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/christmas-letter-sender")
-@RequiredArgsConstructor()
+@RequiredArgsConstructor
 public class LetterSenderController {
   private final LetterSenderService letterSenderService;
 
