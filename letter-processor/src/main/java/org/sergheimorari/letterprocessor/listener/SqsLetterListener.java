@@ -19,7 +19,7 @@ public class SqsLetterListener {
 
   private final LetterRepository letterRepository;
 
-  @SqsListener(value = "${letter-processor.aws.sqs.queue.name}")
+  @SqsListener(value = "${letter-processor.aws.sqs.queue.url}")
   public void receiveLetter(@Payload @Valid LetterDto letterDto) {
     log.info("Received letter: {} on: {}", letterDto, OffsetDateTime.now());
 
