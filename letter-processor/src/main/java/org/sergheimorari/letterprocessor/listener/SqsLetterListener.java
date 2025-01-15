@@ -2,6 +2,7 @@ package org.sergheimorari.letterprocessor.listener;
 
 import static org.sergheimorari.letterprocessor.util.LetterConverter.letterDtoToLetter;
 
+import io.awspring.cloud.sqs.annotation.SqsListener;
 import jakarta.validation.Valid;
 import java.time.OffsetDateTime;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +16,10 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class SqsLetterListener {
+
   private final LetterRepository letterRepository;
 
+  @SqsListener(value = "${letter-processor.aws.sqs.queue.name}")
   public void receiveLetter(@Payload @Valid LetterDto letterDto) {
     log.info("Received letter: {} on: {}", letterDto, OffsetDateTime.now());
 
